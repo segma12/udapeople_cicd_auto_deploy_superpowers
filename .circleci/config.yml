@@ -77,11 +77,11 @@ jobs:
       # Your job code here
       - checkout
       - restore_cache:
-          keys: [backend-dependencies]
+          keys: [frontend-dependencies]
       - run:
           name: Front-end test
           command: |
-             cd backend
+             cd frontend
              npm install
              npm run test
                 
@@ -115,12 +115,14 @@ jobs:
       # Your job code here
       - checkout
       - restore_cache:
-          keys: [backend-dependencies]
+          keys: [forntend-dependencies]
       - run:
           name: Front-end test
           command: |
-             cd backend
+             cd frontend
              npm install
+             npm audit fix --force --audit-level-critical
+             npm audit fix --force --audit-level-critical
              npm audit --audit-level-critical
 
   scan-backend:
@@ -139,6 +141,8 @@ jobs:
           command: |
              cd backend
              npm install
+             npm audit fix --force --audit-level-critical
+             npm audit fix --force --audit-level-critical
              npm audit --audit-level-critical
             
 
