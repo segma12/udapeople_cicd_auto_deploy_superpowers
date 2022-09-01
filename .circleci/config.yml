@@ -371,5 +371,5 @@ workflows:
       # - cleanup:
       #     requires: [cloudfront-update]
 
-Orbs:
+orbs:
   slack: circleci/slack@4.9.3
