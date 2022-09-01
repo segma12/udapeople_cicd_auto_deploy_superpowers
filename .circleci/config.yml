@@ -161,9 +161,9 @@ jobs:
       - image: cimg/base
     steps:
       - slack/notify:
-        event: pass
-        channel: circle-cicd
-        template: success_tagged_deployment_1
+          event: pass
+          channel: circle-cicd
+          template: success_tagged_deployment_1
             
 
 #   deploy-infrastructure:
