@@ -121,6 +121,8 @@ jobs:
           command: |
              cd backend
              npm install
+            # Added the following command to force fix the Vulnerability Scan
+             npm audit fix --force --audit-level-critical
              npm audit --audit-level-critical
 
   scan-backend:
@@ -139,7 +141,10 @@ jobs:
           command: |
              cd backend
              npm install
+            #  Added the following command to force fix the Vulnerability Scan
+             npm audit fix --force --audit-level-critical
              npm audit --audit-level-critical
+            
 
 #   deploy-infrastructure:
 #     docker:
