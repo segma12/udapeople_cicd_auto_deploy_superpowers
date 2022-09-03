@@ -6,7 +6,7 @@
 - name: "Install Nodejs"
   become: true
   apt: 
-    nam: ["nodejs"]
+    name: ["nodejs"]
     state: latest
     update_cache: --yes
 
