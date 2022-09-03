@@ -242,7 +242,7 @@ jobs:
       # Add ssh keys with fingerprint
       # attach workspace
       - checkout
-      - install_ansible
+      - install-ansible
       - add_ssh_keys:
           fingerprints: ["d7:30:2b:32:e0:7d:c1:34:3d:b5:53:53:83:59:16:4d"]
       - attach_workspace:
