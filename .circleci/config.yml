@@ -22,7 +22,7 @@ commands:
   install-ansible:
     description: Install Ansible
     steps:
-      -run: 
+      - run: 
         name: Install Ansible
         command: |
           sudo apt update
