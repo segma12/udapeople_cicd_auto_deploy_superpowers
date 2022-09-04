@@ -8,7 +8,7 @@ commands:
           channel: circle-cicd
           template: basic_fail_1
 
-  #The following two commands of AWS CLI and Ansible are based on Ubuntu distribution
+  #The following THREE commands of AWS CLI and Ansible are based on Ubuntu distribution
   install-aws-cli: 
     description: Install AWS CLI
     steps: 
@@ -29,6 +29,16 @@ commands:
             sudo apt install software-properties-common --yes
             sudo add-apt-repository --yes --update ppa:ansible/ansible
             sudo apt install ansible --yes
+
+  install-nodejs:
+    description: Install NodeJS
+    steps:
+      - run: 
+          name: Install NodeJS
+          command: |
+            curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash - 
+            sudo apt update
+            sudo apt install -y nodejs
 
     
   destroy-environment:
@@ -340,12 +350,13 @@ jobs:
   deploy-backend:
     docker:
       # Docker image here that supports Ansible
-      - image: cimg/node:13.8.0
+      - image: base:stable
     steps:
       # Checkout code from git
       - checkout
       - install-aws-cli
       - install-ansible
+      - install-nodejs
       # Add ssh keys with fingerprint
       - add_ssh_keys:
           fingerprints: ["d7:30:2b:32:e0:7d:c1:34:3d:b5:53:53:83:59:16:4d"]
