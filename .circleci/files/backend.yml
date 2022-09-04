@@ -68,6 +68,14 @@ Resources:
           Tags: 
             -   Key: Name
                 Value: !Sub ${EnvironmentName} public Subnet (AZ2)
+
+  PublicRouteTable:
+      Type: AWS::EC2::RouteTable
+      Properties: 
+          VpcId: !Ref VPC
+          Tags: 
+              - Key: Name 
+                Value: !Sub ${EnvironmentName} Public Routes
   
   DefaultPublicRoute: 
       Type: AWS::EC2::Route
