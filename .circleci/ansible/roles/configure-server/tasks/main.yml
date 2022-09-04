@@ -1,7 +1,8 @@
 - name: "Download Nodejs source"
   become: true
+  #Updating Nodejs version from 13.x to 14.x, because 13.x is deprecated and make Ansible fails with CircleCi 
   shell: |
-    curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+    curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash - 
 
 - name: "Install Nodejs"
   become: true
