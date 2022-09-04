@@ -309,7 +309,7 @@ jobs:
           name: Install dependencies
           command: |
             cd frontend
-            npm run install
+            npm install
       - run:
           name: Get backend url
           command: |
@@ -362,7 +362,7 @@ jobs:
             npm install
 
       - run:
-          name: Build Backend and set production environments
+          name: Build Backend and copy build files
           command: |
             cd backend
             npm i
@@ -374,7 +374,6 @@ jobs:
           name: Deploy backend
           command: |
             cd backend
-            chmod x+u ./setup_prod_env.sh
             ./setup_prod_env.sh
             cd .. && cd .circleci/ansible
             cat inventory.txt
