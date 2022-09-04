@@ -292,7 +292,8 @@ jobs:
 
      # Here's where you will add some code to rollback on failure  
       - revert-migrations  
-      - destroy-environment  
+      - destroy-environment: 
+          requires: ['revert-migrations ']
     
 
   deploy-frontend:
@@ -336,7 +337,8 @@ jobs:
 
       # Here's where you will add some code to rollback on failure   
       - revert-migrations  
-      - destroy-environment  
+      - destroy-environment: 
+          requires: ['revert-migrations ']
       
                     
   deploy-backend:
@@ -383,7 +385,8 @@ jobs:
 
       # Here's where you will add some code to rollback on failure  
       - revert-migrations 
-      - destroy-environment  
+      - destroy-environment: 
+          requires: ['revert-migrations '] 
 
 #   smoke-test:
 #     docker:
