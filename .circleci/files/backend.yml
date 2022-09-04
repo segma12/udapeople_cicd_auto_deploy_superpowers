@@ -9,7 +9,7 @@ Parameters:
   EnvironmentName:
       Description: An Environment name that will be prefixed to resources
       Type: String
-      default: UdaPeople-${ID}
+      Default: UdaPeople-${ID}
   
   VpcCIDR:
       Description: Please enter the IP range (CIDR notation) for this
