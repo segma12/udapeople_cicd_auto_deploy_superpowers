@@ -469,7 +469,7 @@ jobs:
       - destroy-environment 
       - notify_on_failure
 
-cleanup:
+  cleanup:
     docker:
       # Docker image here
       - image: cimg/base:stable
@@ -528,8 +528,8 @@ workflows:
           requires: [smoke-test]
       - cleanup:
           requires: [cloudfront-update]
-      # - notify_on_success:
-      #     requires: [cleanup]
+      - notify_on_success:
+          requires: [cleanup]
 
 orbs:
   slack: circleci/slack@4.9.3
