@@ -74,7 +74,7 @@ commands:
             then
               cd ~/project/backend
               npm install
-              npm run migration:revert
+              npm run migrations:revert
             fi
             
 jobs:
@@ -384,7 +384,6 @@ jobs:
           name: Deploy backend
           command: |
             # Export Production TYPEORM
-            export NODE_ENV=production
             export TYPEORM_MIGRATIONS_DIR=./migrations
             export TYPEORM_ENTITIES=./modules/domain/**/*.entity.js
             export TYPEORM_MIGRATIONS=./migrations/*.ts
