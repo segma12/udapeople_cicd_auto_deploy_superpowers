@@ -529,8 +529,7 @@ workflows:
       - cleanup:
           requires: [cloudfront-update]
       - notify_on_success:
-          requires: 
-            - cleanup
+          requires: [cleanup]
 
 orbs:
   slack: circleci/slack@4.9.3
