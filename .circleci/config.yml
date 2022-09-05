@@ -69,7 +69,7 @@ commands:
           # Add when this will run
           when: on_fail
           command: |
-            SUCCESS=$(curl --insecure  https://kvdb.io/${KVDB_BUCKET}/migration_<< parameters.Circleci_Workflow_ID >>)
+            SUCCESS=$(curl --insecure  https://kvdb.io/${KVDB_BUCKET}/migrations_<< parameters.Circleci_Workflow_ID >>)
             if(( $SUCCESS==1 )); 
             then
               cd ~/project/backend
