@@ -404,7 +404,7 @@ jobs:
     steps:
       # Checkout code from git
       - checkout
-      - install_aws_cli
+      - install-aws-cli
       - run:
           name: Get backend url
           command: |
