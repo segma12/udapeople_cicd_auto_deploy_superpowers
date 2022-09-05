@@ -2,14 +2,19 @@
   become: true
   #Updating Nodejs version from 13.x to 14.x, because 13.x is deprecated and make Ansible fails with CircleCi 
   shell: |
-    curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash - 
+        # Install Node.js LTS version as our base Node.js version
+        curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+        sudo apt install -y nodejs
+        # Use n version manager to use Node.js v13.8.0
+        sudo npm install --global n
+        sudo n 13.8.0
 
-- name: "Install Nodejs"
-  become: true
-  apt: 
-    name: ["nodejs"]
-    state: latest
-    update_cache: yes
+# - name: "Install Nodejs"
+#   become: true
+#   apt: 
+#     name: ["nodejs"]
+#     state: latest
+#     update_cache: yes
 
 - name: "Install PM2"
   npm:
