@@ -405,7 +405,7 @@ jobs:
       - checkout
       - install-aws-cli
       - run:
-          name: Get backend url
+          name: Backend smoke test.
           command: |
             # Getting the created instance URL
 
@@ -415,9 +415,6 @@ jobs:
               --output text)
 
             export API_URL="http://${BACKEND_IP}:3030"
-      - run:
-          name: Backend smoke test.
-          command: |
             if curl -s $API_URL/api/status | grep "ok"
             then
               exit 0
