@@ -31,17 +31,15 @@ commands:
             sudo apt install ansible --yes
 
   install-nodejs:
-    description: Install NodeJS Via NVM
+    description: Install NodeJS Via 
     steps:
       - run: 
           name: Install NodeJS
           command: |
-            curl -sL https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh -o install_nvm.sh
-            bash install_nvm.sh
-            export NVM_DIR="$HOME/.nvm"
-            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-            [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-            nvm install 13.8.0
+            curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash - 
+            sudo apt update
+            sudo apt install -y nodejs
+
     
   destroy-environment:
     description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
@@ -352,13 +350,13 @@ jobs:
   deploy-backend:
     docker:
       # Docker image here that supports Ansible
-      - image: cimg/base:stable
+      - image: cimg/node:13.8.0
     steps:
       # Checkout code from git
       - checkout
       - install-aws-cli
       - install-ansible
-      - install-nodejs
+      # - install-nodejs
       # Add ssh keys with fingerprint
       - add_ssh_keys:
           fingerprints: ["d7:30:2b:32:e0:7d:c1:34:3d:b5:53:53:83:59:16:4d"]
