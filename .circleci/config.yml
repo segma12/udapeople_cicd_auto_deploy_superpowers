@@ -59,18 +59,13 @@ commands:
 
   revert-migrations:
     description: Revert the last migration if successfully run in the current workflow.
-    parameters:
-      # Add parameter here     
-      Circleci_Workflow_ID:
-        type: string
-        default: ${CIRCLE_WORKFLOW_ID:0:7}
     steps:
       - run:
           name: Revert migrations
           # Add when this will run
           when: on_fail
           command: |
-            SUCCESS = $(curl --insecure https://kvdb.io/${KVDB_BUCKET}/migrations_<< parameters.Circleci_Workflow_ID >>)
+            SUCCESS = $(curl --insecure https://kvdb.io/${KVDB_BUCKET}/migrations_${CIRCLE_WORKFLOW_ID:0:7})
             if(( $SUCCESS==1 )); 
             then
               cd ~/project/backend
@@ -385,6 +380,7 @@ jobs:
           name: Deploy backend
           command: |
             # Export Production TYPEORM
+            NODE_ENV=production
             export TYPEORM_MIGRATIONS_DIR=./migrations
             export TYPEORM_ENTITIES=./modules/domain/**/*.entity.js
             export TYPEORM_MIGRATIONS=./migrations/*.ts
