@@ -31,15 +31,17 @@ commands:
             sudo apt install ansible --yes
 
   install-nodejs:
-    description: Install NodeJS
+    description: Install NodeJS Via NVM
     steps:
       - run: 
           name: Install NodeJS
           command: |
-            curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash - 
-            sudo apt update
-            sudo apt install -y nodejs
-
+            curl -sL https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh -o install_nvm.sh
+            bash install_nvm.sh
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+            [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+            nvm install 13.8.0
     
   destroy-environment:
     description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
